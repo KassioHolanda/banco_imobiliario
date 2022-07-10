@@ -37,8 +37,6 @@ class Jogador:
         if propriedade.proprietario is None:
             propriedade.proprietario = self
             self.saldo -= propriedade.preco_compra
-            return True
-        return False
 
     def __repr__(self):
         return self.nome
