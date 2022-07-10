@@ -2,11 +2,11 @@ from abc import abstractmethod
 
 
 class Jogador:
-    def __init__(self, nome, saldo_inicial=300.00):
+    def __init__(self, nome):
         self.nome = nome
-        self.saldo = saldo_inicial
         self.jogando = True
-        self.saldo_inicial = saldo_inicial
+        self.saldo_inicial = 300
+        self.saldo = self.saldo_inicial
         self.posicao_tabuleiro = 0
         self.numero_jogadas = 0
 
@@ -16,17 +16,29 @@ class Jogador:
         return False
 
     def validar_saldo(self):
-        if self.saldo < 0:
+        if self.saldo <= 0:
             self.jogando = False
+
         return self.jogando
 
     @abstractmethod
-    def comprar_propriedade(self, propriedade):
+    def posso_comprar_propriedade(self, propriedade):
         pass
 
     def pagar_aluguel(self, propriedade):
         self.saldo -= propriedade.preco_aluguel
         propriedade.receber_aluguel()
+
+    def completar_volta_tabuleiro(self, posicao=1):
+        self.posicao_tabuleiro = posicao
+        self.saldo += 100
+
+    def comprar_propriedade(self, propriedade):
+        if propriedade.proprietario is None:
+            propriedade.proprietario = self
+            self.saldo -= propriedade.preco_compra
+            return True
+        return False
 
     def __repr__(self):
         return self.nome
