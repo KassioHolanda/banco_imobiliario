@@ -5,7 +5,7 @@ class Tabuleiro:
     def __init__(self):
         self.propriedades = []
         self.jogadores = []
-        self.rodada_atual = 1
+        self.rodada_atual = 0
 
     def sortear_jogadores(self):
         random.shuffle(self.jogadores)

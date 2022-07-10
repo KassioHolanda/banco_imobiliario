@@ -6,9 +6,9 @@ class Jogador:
         self.nome = nome
         self.jogando = True
         self.saldo_inicial = 300
-        self.saldo = self.saldo_inicial
+        self.saldo = 300
         self.posicao_tabuleiro = 0
-        self.numero_jogadas = 0
+        self.numero_rodadas = 0
 
     def consultar_saldo_suficiente(self, valor):
         if self.saldo >= valor:
@@ -16,7 +16,7 @@ class Jogador:
         return False
 
     def validar_saldo(self):
-        if self.saldo <= 0:
+        if self.saldo < 0:
             self.jogando = False
 
         return self.jogando
