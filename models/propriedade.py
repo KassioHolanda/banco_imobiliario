@@ -16,8 +16,7 @@ class Propriedade():
             return True
         return False
     
-    def receber_aluguel(self, jogador):
-        jogador.saldo -= self.preco_aluguel
+    def receber_aluguel(self):
         self.proprietario.saldo += self.preco_aluguel
     
     def __repr__(self):
